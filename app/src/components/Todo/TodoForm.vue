@@ -1,40 +1,49 @@
 <template>
   <form class="d-flex" @submit.prevent="onSubmit">
     <div class="input-group d-flex">
-      <input v-model="title" type="text" placeholder="Add todo..." :class="isInvalid ? { invalid: true } : { valid: true }"/>
+      <input
+        v-model="title"
+        type="text"
+        placeholder="Add todo..."
+        :class="error ? {invalid:true} : {valid: true}"
+      />
       <button type="submit" value="Submit">Add</button>
     </div>
-    <span v-if="isInvalid">Please insert a valid input!</span>
+    <span>{{ error }}</span>
   </form>
 </template>
 
 <script>
 export default {
   name: "TodoForm",
-  data(){
+  data() {
     return {
       id: null,
       title: "",
       completed: false,
-      isInvalid: true,
-    }
+      error: "",
+    };
   },
   methods: {
-    onSubmit(){
-      let todo = {
-        id: Date.now(),
-        title: this.title,
-        completed: this.completed
-        }
-        this.$emit('form-submitted', todo);
-        this.id= null,
-        this.title=null
-    }
-  }
+    onSubmit() {
+      if (this.title) {
+        let todo = {
+          id: Date.now(),
+          title: this.title,
+          completed: this.completed,
+        };
+        this.$emit("form-submitted", todo);
+        (this.id = null), (this.title = null);
+      } else {
+        if (!this.title || this.title.length <2)
+          this.error="Please insert atleast 2 characters";
+      }
+    },
+  },
 };
 </script>
 
-<style>
+<style scooped>
 form {
   flex-direction: column;
   width: 100%;
@@ -52,17 +61,7 @@ input {
   font-size: 1rem;
   outline: none;
 }
-button {
-  padding: 0.7rem 1.5rem;
-  background-color: #e91e634d;
-  border: none;
-  outline: none;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  margin-left: 1.5rem;
-  color: #fff;
-  cursor: pointer;
-}
+
 .invalid {
   border: 1px solid red;
   outline: red;
