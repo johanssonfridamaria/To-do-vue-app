@@ -3,25 +3,20 @@
     <appheader> 
     </appheader>
     <div class="mt-2 container">
-      <todoForm>
-      </todoForm>
-      <todos>
-      </todos>
+      <todoList></todoList>
     </div>
   </div>
 </template>
 
 <script>
 import Header from './components/Header';
-import TodoForm from './components/Todo/TodoForm'
-import Todos from './components/Todo/Todos.vue';
+import TodoList from './components/Todo/TodoList.vue';
 
 export default {
   name: 'App',
   components: {
     appheader: Header,
-    TodoForm,
-    Todos,
+    TodoList,
   }
 }
 </script>

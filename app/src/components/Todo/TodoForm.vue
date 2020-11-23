@@ -1,20 +1,46 @@
 <template>
-  <form class="d-flex">
-    <input type="text" placeholder="Add todo..." />
-    <button class="" type="submit">Add</button>
+  <form class="d-flex" @submit.prevent="onSubmit">
+    <div class="input-group d-flex">
+      <input v-model="title" type="text" placeholder="Add todo..." :class="isInvalid ? { invalid: true } : { valid: true }"/>
+      <button type="submit" value="Submit">Add</button>
+    </div>
+    <span v-if="isInvalid">Please insert a valid input!</span>
   </form>
 </template>
 
 <script>
 export default {
   name: "TodoForm",
+  data(){
+    return {
+      id: null,
+      title: "",
+      completed: false,
+      isInvalid: true,
+    }
+  },
+  methods: {
+    onSubmit(){
+      let todo = {
+        id: Date.now(),
+        title: this.title,
+        completed: this.completed
+        }
+        this.$emit('form-submitted', todo);
+        this.id= null,
+        this.title=null
+    }
+  }
 };
 </script>
 
 <style>
 form {
+  flex-direction: column;
+  width: 100%;
+}
+.input-group {
   flex-direction: row;
-  align-items: center;
 }
 input {
   width: 100%;
@@ -36,5 +62,13 @@ button {
   margin-left: 1.5rem;
   color: #fff;
   cursor: pointer;
+}
+.invalid {
+  border: 1px solid red;
+  outline: red;
+}
+.valid {
+  border: 1px solid green;
+  outline: green;
 }
 </style>
