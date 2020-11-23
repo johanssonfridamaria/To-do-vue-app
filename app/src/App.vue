@@ -42,4 +42,15 @@ body{
 {
 margin-top: 2rem;
 }
+button {
+  padding: 0.7rem 1.5rem;
+  background-color: #e91e634d;
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  margin-left: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+}
 </style>
