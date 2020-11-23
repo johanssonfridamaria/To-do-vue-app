@@ -1,13 +1,27 @@
 <template>
-  <li class="d-flex"> {{ todo.title }} <button class="delete-btn">X</button></li>
+  <li class="d-flex">
+    {{ todo.title }}
+    <delete-todobtn class="button" @click="removeTodo"></delete-todobtn>
+  </li>
 </template>
 
 <script>
+import DeleteTodobtn from "./DeleteTodobtn.vue";
 
 export default {
-name: 'TodoItem',
-props:['todo']
-}
+  components: { DeleteTodobtn },
+  name: "TodoItem",
+  props: ["todo",],
+  methods: {
+    removeTodo(id) {
+      for (var i = 0; i < this.todoList.length; i++) {
+        if (this.todoList[i] === id) {
+          this.todoList.splice(i, 1);
+        }
+      }
+    },
+  },
+};
 </script>
 
 <style scooped>
@@ -17,7 +31,7 @@ props:['todo']
   color: #fff;
   font-size: 1.5rem;
 }
-li{
+li {
   margin-bottom: 1rem;
   justify-content: space-between;
   align-items: center;

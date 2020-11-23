@@ -18,7 +18,7 @@ export default {
   name: "TodoList",
   components: {
     TodoItem,
-    TodoForm,
+    TodoForm, 
   },
   data() {
     return {

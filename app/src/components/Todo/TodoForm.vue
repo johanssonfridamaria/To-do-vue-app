@@ -33,7 +33,8 @@ export default {
           completed: this.completed,
         };
         this.$emit("form-submitted", todo);
-        (this.id = null), (this.title = null);
+        this.id = null,
+         this.title = null;
       } else {
         if (!this.title || this.title.length <2)
           this.error="Please insert atleast 2 characters";
