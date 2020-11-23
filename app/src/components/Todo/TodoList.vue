@@ -33,7 +33,7 @@ export default {
 };
 </script>
 
-<style>
+<style scooped>
 .todo {
   background-color: #fff;
   width: 100%;
@@ -47,15 +47,6 @@ ul{
   margin: 2rem 0;
   padding: 0;
 }
-li{
-  margin-bottom: 1rem;
-}
-.delete-btn {
-  background-color: transparent;
-  border-radius: 50%;
-  padding: 0;
-  font-weight: bold;
-  color: #ccc;
-  font-size: 1.5rem;
-}
+
+
 </style>
